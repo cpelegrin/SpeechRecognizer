@@ -22,6 +22,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import br.com.cpelegrin.speechrecognizer.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -91,12 +92,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startSpeechToTextActivity();
@@ -117,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        speedValue = findViewById(R.id.speedValue);
-        SeekBar speedVoice = findViewById(R.id.setspeedBar);
+        speedValue = binding.includedLayout.speedValue;
+        SeekBar speedVoice = binding.includedLayout.setspeedBar;
         speedVoice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -146,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        pitchValue = findViewById(R.id.pitchValue);
-        SeekBar pitchSeekBar = findViewById(R.id.setPitchBar);
+        pitchValue = binding.includedLayout.pitchValue;
+        SeekBar pitchSeekBar = binding.includedLayout.setPitchBar;
         pitchSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
